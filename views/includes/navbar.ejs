@@ -19,7 +19,7 @@
       
         <div class="navbar-nav ms-auto">
           <a class="nav-link list-home" href="/listing/new">List  your home</a>
-
+          
           <% if(!currUser){  %>
             <a class="nav-link link-border "  href="/signup"><b>Sign-Up</b></a>
           <a class="nav-link link-border" href="/login"><b>Log-in</b></a>
@@ -28,21 +28,41 @@
           <% if(currUser){  %>
             <a class="nav-link link-border" href="/logout"><b>Log-Out</b></a>
           <% } %>
-          
+
           <style>
+            
             .link-border{
               border:2px solid #fe434d;
               margin-left: 5px;
               border-radius: 15px;
+              width: auto;
+              margin-top: 0;
             }
             .link-border:hover{
               background-color: #fe434d;
               color: white !important;
             }
+            @media(max-width:500px){
+              .link-border{
+                width: 100px;
+                margin-top: 1rem;
+                display: inline;
+                
+              }
+              .list-home{
+                width: 150px;
+                margin-top: 1rem;
+               
+
+              }
+
+            }
             .list-home{
               border:2px solid #fe434d;
               margin-left: 5px;
               border-radius: 15px;
+             
+              
             }
             .list-home:hover{
               
@@ -60,7 +80,7 @@
   <style>
     /* navbar */
 .navbar{
-    height: 5rem;
+    /* height: 5rem; */
     background-color: white;
 }
 
@@ -93,3 +113,16 @@
   font-size: 1rem;
 }
   </style>
+
+
+
+
+
+
+
+
+
+
+
+
+   

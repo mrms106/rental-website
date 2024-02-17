@@ -8,17 +8,17 @@
     <h3><%= listing.title%></h3></div>
 
   
-    <div class="card col-6 offset-3 show-card listing-card" >
+    <div class="card col-6 offset-3 show-card listing-card main" >
         <img src="<%= listing.image.url%>" class="card-img-top show-image" alt="listing image">
         <div class="card-body">
           <p class="card-text">
-          <i>Owned By:<b><%= listing.owner.username %></b></i> 
+          <i>Owner: @<b><%= listing.owner.username %></b></i> 
           <br></p>
           <p class="card-text">
-            <%= listing.description %></p>
-            <p class="card-text">   &#8377;<%= listing.price.toLocaleString("en-IN") %></p>
-            <p class="card-text"> <%= listing.location %><br></p>
-            <p class="card-text"> <%= listing.country %></p>
+           Information: <%= listing.description %></p>
+            <p class="card-text"> price:  &#8377;<%= listing.price.toLocaleString("en-IN") %>/Night</p>
+            <p class="card-text">Address: <%= listing.location %><br></p>
+            <p class="card-text"> country: <%= listing.country %></p>
 
 
         </p>
@@ -39,7 +39,7 @@
 
 
     <form method="post" action="/listing/<%=listing._id %>?_method=DELETE">
-        <button class="btn btn-dark offset-5">  Delete</button>
+        <button class="btn btn-dark offset-5 del-btn">  Delete</button>
     </form>
 </div><% } %>
 
@@ -95,17 +95,20 @@
     <p><b>All Reviews</b></p>
     <% for(review of listing.reviews){%>
         
-        <div class="card col-5 ms-3 mb-3">
+        <div class="card col-5 ms-3 mb-3 all-review">
             <div class="card-body">
                 <h5 class="card-title">@<%= review.author.username  %></h5>
                 <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
 
                 <p class="card-text"><%= review.comment %></p>
             </div>
+            
             <form class="mb-3" method="post" action="/listing/<%=listing._id%>/reviews/<%= review._id %>?_method=DELETE">
+                
                 <button class="btn btn-sm btn-dark" >Delete</button>
+                
             </form>
-
+          
         </div>
     <% } %>
 </div>
@@ -113,20 +116,20 @@
 </div>
 <div class="col-6 offset-3 mb-3">
     <h3>Where you'll be</h3>
-      <div id="map" style="height: 300px; width: 400px;">
+    <a href="https://www.google.com/maps/search/?api=1&query=<%= encodeURIComponent(listing.location) %>" target="_blank"><div id="map">
 
-    </div>
+    </div></a>
       </div>
 
       <script>
-        var map = L.map('map').setView([18.4088, 76.5604], 7);
+        var map = L.map('map').setView([18.5204, 73.8567], 7);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-L.marker([18.4088, 76.5604]).addTo(map)
-    .bindPopup('Exact location Provided <br>after booking')
+L.marker([18.5204, 73.8567]).addTo(map)
+    .bindPopup('Click On Map To Get Exact Location')
     .openPopup();
     </script>
 
@@ -146,5 +149,46 @@ L.marker([18.4088, 76.5604]).addTo(map)
         opacity: 0.8;
         height: 2.8rem;
         width: 6.8rem;
+    }
+
+    /* this is for map */
+    #map{
+        width: auto;
+        height: 300px;
+    }
+    @media(max-width:500px){
+        #map{
+            width: 250px;
+            height: 250px;
+        }
+    }
+
+
+    /* show route */
+    @media(max-width:500px){
+        .main{
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            
+        }
+        .main img{
+            width: 300px !important;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        .btns{
+            display: flex !important;
+            margin-right: 40% !important;
+        }
+        .del-btn{
+            width: 100px !important;
+        }
+        .edit-btn{
+            width: 100px !important;
+        }
+        .all-review{
+            width: 200px;
+        }
     }
 </style>

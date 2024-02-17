@@ -108,13 +108,13 @@
 
             <label for="location" 
             class="form-label">
-            Booking Price
+            Booking Price With gst:
         </label>
 
           <div style="display: flex; justify-content: start;">
-        <div><i><%= listing.price%>&#8377;</i></div>+
-        <div><i><%= listing.price*0.18%>&#8377; gst</i></div>
-        &nbsp;&nbsp;final Booking price is:&nbsp; <div><i><%= listing.price +(listing.price*0.18) %>&#8377; /Night</i></div>
+        <div style="display: none;"><i><%= listing.price%>&#8377;</i></div>
+        <div style="display: none;"><i><%= listing.price*0.18%>&#8377; gst</i></div>
+       <i><%= listing.price +(listing.price*0.18) %>&#8377; /Night</i>
     </i>
         </div>
              
