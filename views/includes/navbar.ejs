@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/listing"><i class="fa-regular fa-compass"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+         
+          <a class="nav-link" href="/listing">Explore</a>
+          
+        </div>
+        <div class="navbar-nav ms-auto">
+          <form class="d-flex" action="/listing/search" method="GET" role="search">
+              <input class="form-control me-2 search-input" type="search" name="query" placeholder="search destination">
+              <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          </form>
+      </div>
+      
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link list-home" href="/listing/new">List  your home</a>
+
+          <% if(!currUser){  %>
+            <a class="nav-link link-border "  href="/signup"><b>Sign-Up</b></a>
+          <a class="nav-link link-border" href="/login"><b>Log-in</b></a>
+          <% } %>
+
+          <% if(currUser){  %>
+            <a class="nav-link link-border" href="/logout"><b>Log-Out</b></a>
+          <% } %>
+          
+          <style>
+            .link-border{
+              border:2px solid #fe434d;
+              margin-left: 5px;
+              border-radius: 15px;
+            }
+            .link-border:hover{
+              background-color: #fe434d;
+              color: white !important;
+            }
+            .list-home{
+              border:2px solid #fe434d;
+              margin-left: 5px;
+              border-radius: 15px;
+            }
+            .list-home:hover{
+              
+              border:2px solid green;
+
+
+            }
+
+          </style>
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+  <style>
+    /* navbar */
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-compass{
+    color: #fe434d;
+    font-size: 2rem;
+}
+.nav-link{
+    color: #222222 !important;
+
+}
+.btn-search{
+  background-color: #fe434d;
+  color: aliceblue;
+  border-radius: 25px;
+  padding: 0 1rem 0 1rem;
+}
+.btn-search:hover{
+  background-color: #fe434d;
+  opacity: 0.7;
+  color: aliceblue;
+}
+.btn-search i{
+  display: inline;
+  margin-right: 0.5rem;
+}
+.search-input{
+  border-radius: 25px;
+  padding: 0.5rem 3rem 0.5rem 3rem;
+  font-size: 1rem;
+}
+  </style>

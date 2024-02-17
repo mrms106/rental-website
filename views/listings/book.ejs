@@ -1,0 +1,130 @@
+<%=layout ("./layouts/boilerplate.ejs")%>
+
+<br><br>
+<div class="row">
+    <div class="col-8 offset-2">
+    <h3>Book Now</h3><br>
+    <form method="post" action="/listing/<%= listing._id %>" novalidate class="needs-validation">
+        <div class="mb-3">
+         
+            <label for="ID" 
+            class="form-label">
+        Username
+        </label>
+ 
+        <textarea name="booking[username]" class="form-control" required readonly><%= currUser.username %></textarea>
+        </div>
+
+        <div class="mb-3">
+         
+            <label for="ID" 
+            class="form-label">
+         Hotel Name
+        </label>
+ 
+        <textarea name="booking[hotel]" class="form-control" required readonly><%= listing.title %></textarea>
+        
+        <!-- <div style="color: green;">Dont change this Hotel Name it is default</div> -->
+
+
+         
+        </div>
+
+        <div class="mb-3">
+         
+            <label for="Name" 
+            class="form-label">
+           Full Name
+        </label>
+
+        <input name="booking[name]" 
+        placeholder="Enter your Name" 
+        type="text" 
+        class="form-control" required>
+        <div class="invalid-feedback">Please Enter your Name</div>
+
+         
+        </div>
+
+        <div class="mb-3">
+            <label for="Phone" 
+            class="form-label">
+             Phone Number
+        </label>
+        <input name="booking[phone]" 
+        placeholder="Enter your Phone Number" 
+        type="number" 
+        class="form-control" required>
+            
+
+            
+        <div class="invalid-feedback">Please Enter Phone Number</div>
+
+        </div>
+        <div class="mb-3">
+            <label for="email" 
+            class="form-label">
+            E-mail
+        </label>
+
+        <input name="booking[mail]" 
+        placeholder="enter Email" type="email" 
+         class="form-control" required>
+         <div class="invalid-feedback">Please Enter E-mail </div>
+        </div>
+       
+        
+    <div class="row">
+        <div class="mb-3 col-md-4">
+            <label for="Date" 
+            class="form-label">
+            cheak IN Date
+        </label>
+            <input name="booking[cheakIn]" 
+             type="date" 
+             class="form-control" required>
+
+             
+        <div class="invalid-feedback">Please Enter Date</div>
+
+        </div>
+
+        <div class="mb-3 col-md-8" >
+            <label for="date" 
+            class="form-label">
+            cheak Out Date
+        </label>
+            <input name="booking[cheakOut]" 
+             type="date" 
+              class="form-control" required>
+
+              
+        <div class="invalid-feedback">Please Enter Date</div>
+
+        </div>
+    </div>
+        
+        <div class="mb-3">
+
+            <label for="location" 
+            class="form-label">
+            Booking Price
+        </label>
+
+          <div style="display: flex; justify-content: start;">
+        <div><i><%= listing.price%>&#8377;</i></div>+
+        <div><i><%= listing.price*0.18%>&#8377; gst</i></div>
+        &nbsp;&nbsp;final Booking price is:&nbsp; <div><i><%= listing.price +(listing.price*0.18) %>&#8377; /Night</i></div>
+    </i>
+        </div>
+             
+        </div>
+         
+         <br><br>
+          
+         <button class="btn btn-dark mb-3 add-btn">Book Now</button>
+         <br><br>
+
+    </form></div>
+</div>
+

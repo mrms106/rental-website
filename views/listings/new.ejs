@@ -1,0 +1,198 @@
+<%=layout ("./layouts/boilerplate.ejs")%>
+
+<br><br>
+<div class="row">
+    <div class="col-8 offset-2">
+    <h3>Create a new listing</h3><br>
+    <form method="post" action="/listing" novalidate class="needs-validation" enctype="multipart/form-data">
+
+        <div class="mb-3">
+         
+            <label for="title" 
+            class="form-label">
+            Title
+        </label>
+
+        <input name="listing[title]" 
+        placeholder="Add a Catchy title" 
+        type="text" 
+        class="form-control" required>
+        <div class="valid-feedback"> Title Looks good</div>
+        <div class="invalid-feedback">Please Enter Title</div>
+
+         
+        </div>
+
+        <div class="mb-3">
+            <label for="description" 
+            class="form-label">
+             Description
+        </label>
+
+            <textarea name="listing[description]" placeholder="Enter Description"
+            class="form-control" required></textarea>
+
+            <div class="valid-feedback"> Description Looks good</div>
+        <div class="invalid-feedback">Please Enter Description</div>
+
+        </div>
+        <!-- <div class="mb-3">
+            <label for="image" 
+            class="form-label">
+            Image Link
+        </label>
+
+        <input name="listing[image]" 
+        placeholder="enter image url/link" type="text" 
+         class="form-control">
+        </div> -->
+        <div class="mb-3">
+            <label for="image" 
+            class="form-label">
+            Upload Listing Image
+        </label>
+
+        <input name="listing[image]" 
+         type="file" 
+         class="form-control" required>
+        </div>
+        
+    <div class="row">
+        <div class="mb-3 col-md-4">
+            <label for="price" 
+            class="form-label">
+            Price
+        </label>
+            <input name="listing[price]" 
+            placeholder="1500" type="number" 
+             class="form-control" required>
+
+             <div class="valid-feedback">Good Choice</div>
+        <div class="invalid-feedback">Please Enter Price</div>
+
+        </div>
+
+        <div class="mb-3 col-md-8" >
+            <label for="country" 
+            class="form-label">
+            Country
+        </label>
+            <input name="listing[country]" 
+            placeholder="India" type="text"
+              class="form-control" required>
+
+              
+        <div class="invalid-feedback">Please Enter Country Name</div>
+
+        </div>
+    </div>
+        
+        <div class="mb-3">
+
+            <label for="location" 
+            class="form-label">
+            Location
+        </label>
+
+            <input name="listing[location]" 
+            placeholder="Latur,Maharashtra" type="text" 
+             class="form-control" required>
+             <div class="invalid-feedback">Please Enter City Name</div>
+
+        </div>
+        <div class="mb-3">
+
+            <label for="location" 
+            class="form-label">
+            Catagory
+        </label>
+
+            <!-- <input name="listing[catagory]" 
+            type="text" 
+             class="form-control" required> -->
+             <div class="input-container">
+                <input type="text" name="listing[catagory]" class="form-control" id="inputField" placeholder="Click here..." required>
+                <div class="options">
+                  <div class="option">Dont Want to specify</div>
+                  <div class="option">arctic</div>
+                  <div class="option">Boat</div>
+                  <div class="option">camping</div>
+                  <div class="option">castele</div>
+                  <div class="option">city</div>
+                  <div class="option">domes</div>
+                  <div class="option">farm</div>
+                  <div class="option">mountain</div>
+                  <div class="option">pools</div>
+                  <div class="option">rooms</div>
+                </div>
+              </div>
+              <p style="color: green;">please enter catagory as shows in the list</p>
+             <div class="invalid-feedback">Please Enter Option</div>
+
+        </div>
+        
+         <br><br>
+          
+         <button class="btn btn-dark mb-3 add-btn">Add</button>
+         <br><br>
+
+    </form></div>
+</div>
+<!-- this is for showing option in the input catagory field -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const inputField = document.getElementById("inputField");
+      const options = document.querySelector(".options");
+      const optionItems = document.querySelectorAll(".option");
+      
+      inputField.addEventListener("click", function() {
+        options.style.display = "block";
+      });
+      
+      optionItems.forEach(function(item) {
+        item.addEventListener("click", function() {
+          inputField.value = item.textContent;
+          options.style.display = "none";
+        });
+      });
+      
+      document.addEventListener("click", function(e) {
+        if (!options.contains(e.target) && e.target !== inputField) {
+          options.style.display = "none";
+        }
+      });
+    });
+  </script>
+  <style>
+    .input-container {
+      position: relative;
+      width: 400px; /* Adjust width as needed */
+    }
+    
+    .options {
+  display: none;
+  position: absolute;
+  top: calc(100% + 5px); /* Adjust spacing as needed */
+  left: 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  min-width: 200px; /* Adjust width as needed */
+  z-index: 1;
+  column-count: 3; /* Set the number of columns */
+  padding: 10px; /* Add padding to the options */
+}
+
+.option {
+  padding: 5px 0;
+  cursor: pointer;
+  display: inline-block; /* Ensure options are displayed inline-block */
+  width: 100%; /* Ensure each option takes full width of column */
+}
+    
+    .option:hover {
+      background-color: black;
+      color: #ccc;
+    }
+  </style>
