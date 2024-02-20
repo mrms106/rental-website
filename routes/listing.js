@@ -13,6 +13,8 @@ const upload = multer({ storage })
 
 const listingController=require("../controllers/listing.js");
 const catagorycontroller=require("../controllers/catagory.js");
+const bookingcontroller=require("../controllers/booking.js");
+
 const { assert } = require("joi");
 
 
@@ -61,11 +63,9 @@ router.delete("/:id",isLoggedIn,isOwner,wrapAsync(listingController.destroyListi
 
 //booking routes
 
-router.get("/:id/booking",isLoggedIn,wrapAsync(listingController.booking));
-
-router.post("/:id",isLoggedIn,wrapAsync(listingController.renderbookform));
-
-router.get("/:id/booking/success",isLoggedIn,wrapAsync(listingController.booksuccess))
+router.get("/:id/booking",isLoggedIn,wrapAsync(bookingcontroller.booking));
+router.post("/:id",isLoggedIn,wrapAsync(bookingcontroller.renderbookform));
+router.get("/:id/booking/success",isLoggedIn,wrapAsync(bookingcontroller.booksuccess))
 
 
 

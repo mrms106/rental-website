@@ -5,6 +5,9 @@
     <div class="col-8 offset-2">
     <h3>Create a new listing</h3><br>
     <form method="post" action="/listing" novalidate class="needs-validation" enctype="multipart/form-data">
+      <input name="listing[email]" 
+       type="hidden" 
+       class="form-control" value="<%=currUser.email%>" readonly required>
 
         <div class="mb-3">
          
@@ -55,7 +58,7 @@
         <input name="listing[image]" 
          type="file" 
          class="form-control" required>
-        </div>
+      </div>
         
     <div class="row">
         <div class="mb-3 col-md-4">

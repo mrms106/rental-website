@@ -20,7 +20,9 @@ const flash=require("connect-flash")
 const passport=require("passport");
 const localStratergy=require("passport-local");
 const User=require("./models/user.js");
-
+//otp modules
+const bodyParser = require('body-parser');
+const otpveify = require("./routes/otpverify.js");
 
 
 const listing = require("./routes/listing.js");
@@ -30,8 +32,9 @@ const user=require("./routes/user.js");
 
 
 
-// const dbUrl="mongodb+srv://mr-ms:OCkohODeYiNMtG8t@cluster0.fgcsj7b.mongodb.net/?retryWrites=true&w=majority"
+
 //adding the databas
+// const dbUrl="mongodb://127.0.0.1:27017/wanderlust2";
 const dbUrl=process.env.ATLAS_DB;
 main()
 .then(()=>{console.log("the database is connected")})
@@ -117,6 +120,7 @@ app.use((req,res,next)=>{
 app.use("/listing",listing);
 app.use("/listing/:id/reviews",reviews);
 app.use("/",user);
+app.use("/sign",otpveify);
 
 
 //middlewair definig error handling

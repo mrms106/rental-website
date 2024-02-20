@@ -26,6 +26,7 @@ const listingSchema = new Schema({
     ref:"User",
   },
   catagory:String,
+  email:String,
   
   
   

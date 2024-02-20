@@ -3,8 +3,6 @@ const Booking=require("../models/booking");
 const User=require("../models/user.js");
 
 
-
-
 module.exports.index=async(req,res)=>{
     const allListing=await  Listing.find({});   
  res.render("./listings/index.ejs",{allListing});
@@ -33,6 +31,24 @@ module.exports.showListing=async(req,res)=>{
     
 
 };
+module.exports.wishlist=async(req,res)=>{
+    try {
+      const listingId = req.params.id;
+      const { email } = req.body.listing;
+  
+      // Find the listing by ID and update its wishlist with the provided email
+      const listing = await Listing.findByIdAndUpdate(listingId, { $addToSet: { wishlist: `${email}wishlist` } }, { new: true });
+  
+      if (!listing) {
+        return res.status(404).send('Listing not found');
+      }
+  
+      return res.status(200).send('Listing added to wishlist successfully');
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send('Internal Server Error');
+    }
+  };
 
 module.exports.createListing=async(req,res,next)=>{
    let url= req.file.path;
@@ -51,7 +67,7 @@ module.exports.createListing=async(req,res,next)=>{
 
  module.exports.renderEditform=async(req,res)=>{
     let{id}=req.params;
-    const listing=await Listing.findById(id);
+    const listing=await Listing.findById(id).populate(owner);
     if(!listing){
         req.flash("error","listing you requestd for does not exist ");
         res.redirect("/listing")
@@ -84,23 +100,7 @@ module.exports.destroyListing=async(req,res)=>{
 };
 
 
-//booking routes
-module.exports.booking=async(req,res)=>{
-    let{id}=req.params;
-    const listing=await Listing.findById(id);
-    res.render("./listings/book.ejs",{listing})
- };
 
- module.exports.renderbookform=async(req,res)=>{
-    const newBooking= new Booking(req.body.booking);
-    let{id}=req.params;
-//    await Listing.findByIdAndUpdate(id,{...req.body.listing});
-    // newListing.owner= req.user._id;
-    await newBooking.save();
-    req.flash("success","Booked succesfully!! you will get message from owner in few minuites Make 50% amount payment to conform Booking. Thank you!!");
-    res.redirect(`/listing/${id}`);
-
-};
 
 
 //this module for search query

@@ -7,6 +7,13 @@ module.exports.renderSignupform=(req,res)=>{
 module.exports.signup=async(req,res)=>{
     try{
         let{username,email,password}=req.body;
+        //cheack email is already resistered or not
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            req.flash("error", "Email is already registered use another email");
+            return res.redirect("/sign");
+        }
+
       const newUser=new User({email,username});
      const registereduser=await User.register(newUser,password);
 //    console.log(registereduser);

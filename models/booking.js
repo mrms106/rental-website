@@ -10,6 +10,7 @@ const bookingSchema= new Schema({
     mail:String,
     cheakIn:String,
     cheakOut:String,
+    
 
 });
 
