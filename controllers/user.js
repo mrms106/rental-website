@@ -1,3 +1,4 @@
+const { model } = require("mongoose");
 const User=require("../models/user.js");
 
 module.exports.renderSignupform=(req,res)=>{
@@ -37,7 +38,7 @@ module.exports.renderLoginform=(req,res)=>{
 };
 
 module.exports.login=async(req,res)=>{
-    req.flash("success","welcome back to wanderlust you are logged in");
+    req.flash("success",`welcome back to wanderlust  you are logged in`);
     let redirectUrl=res.locals.redirectUrl || "/listing";
     res.redirect(redirectUrl);
 };
@@ -51,3 +52,6 @@ module.exports.logout=(req,res,next)=>{
         res.redirect("/listing");
     })
 };
+
+
+

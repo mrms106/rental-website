@@ -31,24 +31,8 @@ module.exports.showListing=async(req,res)=>{
     
 
 };
-module.exports.wishlist=async(req,res)=>{
-    try {
-      const listingId = req.params.id;
-      const { email } = req.body.listing;
-  
-      // Find the listing by ID and update its wishlist with the provided email
-      const listing = await Listing.findByIdAndUpdate(listingId, { $addToSet: { wishlist: `${email}wishlist` } }, { new: true });
-  
-      if (!listing) {
-        return res.status(404).send('Listing not found');
-      }
-  
-      return res.status(200).send('Listing added to wishlist successfully');
-    } catch (error) {
-      console.error(error);
-      return res.status(500).send('Internal Server Error');
-    }
-  };
+module.exports.wishlist=async(req,res)=>
+    
 
 module.exports.createListing=async(req,res,next)=>{
    let url= req.file.path;

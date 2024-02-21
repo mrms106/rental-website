@@ -1,0 +1,20 @@
+
+<%=layout ("./layouts/boilerplate.ejs")%>
+
+<div class="row">
+    <h1 class="col-6 offset-3"> Change your password Wonderlust</h1>
+    <div class="col-6 offset-3">
+        <form action="/update-password" method="POST" class="needs-validation" novalidate>
+
+            <label for="email" class="form-label">Email:</label>
+            <input name="email" id="email" type="text" class="form-control" value="<%=email%>" readonly required>
+            <label for="password" class="form-label">New Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+            
+               
+             <button type="update" class="btn btn-success mt-3">Update pass</button> 
+        </form>
+
+     </div>
+</div>
+

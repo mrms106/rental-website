@@ -26,8 +26,23 @@
         <div class="invalid-feedback">Please Enter Password
           </div>
         </div>
+        <div class="mb-3" style="display: inline;">
                
-             <button class="btn btn-success">Login</button>
+             <button class="btn btn-success">Login</button> <div class="forgot"><a href="/login/forgotpass">forgot password..?</a></div> </div>
         </form>
+
      </div>
 </div>
+<style>
+  .forgot{
+    display: inline;
+    margin-left: 20px;
+  }
+  @media(max-width:500px){
+    .forgot{
+      display: flex;
+      margin-top: 10px;
+      margin-left: 0;
+    }
+  }
+</style>

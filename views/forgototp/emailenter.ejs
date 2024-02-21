@@ -1,0 +1,25 @@
+
+<%=layout ("./layouts/boilerplate.ejs")%>
+
+<div class="row">
+    <h1 class="col-6 offset-3"> Signup On Wonderlust</h1>
+    <div class="col-6 offset-3">
+        <form method="post" action="/login/forgotpass" class="needs-validation" novalidate>
+
+            
+        
+        <div class="mb-3">
+            <label for="email" 
+            class="form-label">E-mail
+            </label>
+
+            <input name="email" id="email" type="text" class="form-control" required>
+
+        <div class="invalid-feedback">Please Enter email
+          </div>
+        </div>
+               
+             <button type="submit" class="btn btn-success">Generate otp</button>
+        </form>
+     </div>
+</div>
