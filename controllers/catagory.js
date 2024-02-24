@@ -1,4 +1,5 @@
 const Listing=require("../models/listing");
+const User=require("../models/user.js");
 
 
 //catagories route
@@ -42,4 +43,10 @@ module.exports.pool=async(req,res)=>{
 module.exports.rooms=async(req,res)=>{
     const allListing=await  Listing.find({catagory:"rooms"});
     res.render("./catagories/rooms.ejs",{allListing})
+}
+module.exports.wishlist=async(req,res)=>{
+    const currUser = req.user.username;
+    const allListing = await Listing.find({ wishlist: currUser }); 
+    res.render("./catagories/wishlist.ejs",{allListing});
+  
 }

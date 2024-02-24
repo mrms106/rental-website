@@ -31,7 +31,7 @@ module.exports.showListing=async(req,res)=>{
     
 
 };
-module.exports.wishlist=async(req,res)=>
+
     
 
 module.exports.createListing=async(req,res,next)=>{
@@ -51,7 +51,8 @@ module.exports.createListing=async(req,res,next)=>{
 
  module.exports.renderEditform=async(req,res)=>{
     let{id}=req.params;
-    const listing=await Listing.findById(id).populate(owner);
+    const listing=await Listing.findById(id)
+    // .populate(owner);
     if(!listing){
         req.flash("error","listing you requestd for does not exist ");
         res.redirect("/listing")
@@ -115,3 +116,59 @@ module.exports.searchquary=async (req, res) => {
         }    
 }
 
+//for add a listing in wishlist
+
+module.exports.addwishlist =async(req, res) => {
+    let{id}=req.params;
+    const { item } = req.body;
+
+    try {
+        const listingId = await Listing.findById(req.params.id);
+
+        const listing = await Listing.findById(listingId);
+        if (!listing) {
+            req.flash("error","listing not exist ")
+            res.redirect(`/listing/${id}`) 
+        }
+         // Check if the item is already in the wishlist
+         if (listing.wishlist.includes(item)) {
+            
+            return res.redirect(`/listing/${id}`);
+        }
+        // Update the wishlist array with the new item
+        listing.wishlist.push(item);
+        await listing.save();
+
+        
+        res.redirect(`/listing/${id}`)
+    } catch (error) {
+        req.flash("error","listing already added in wishlist")
+        res.redirect(`/listing/${id}`)   
+     }
+}
+
+
+module.exports.removewishlist =async(req, res) => {
+    let{id}=req.params;
+    const { item } = req.body;
+
+    try {
+        const listingId = await Listing.findById(req.params.id);
+
+        const listing = await Listing.findById(listingId);
+        if (!listing) {
+            req.flash("error","listing not exist ")
+            res.redirect(`/listing/${id}`) 
+        }
+         
+        // Update the wishlist array with the new item
+        listing.wishlist.pull(item);
+        await listing.save();
+
+        
+        res.redirect(`/listing/${id}`)
+    } catch (error) {
+        req.flash("error","listing already added in wishlist")
+        res.redirect(`/listing/${id}`)   
+     }
+}

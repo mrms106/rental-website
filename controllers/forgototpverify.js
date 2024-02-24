@@ -4,6 +4,7 @@ const User=require("../models/user.js");
 const Userotp=require("../models/otp.js")
 
 const { generateOTP, sendOTP,  } = require('../nodemail/nodemailer.js');
+const user = require("../models/user.js");
 
 module.exports.enteremail=async (req, res) => {
     res.render("./forgototp/emailenter.ejs")
@@ -73,7 +74,7 @@ module.exports.verifyotp=async (req, res) => {
 
 module.exports.changepass=async(req, res) => {
     const email = req.query.email;
-  
+   
     try {
       const user = await Userotp.findOne({ email });
       if (!email) {
@@ -86,7 +87,7 @@ module.exports.changepass=async(req, res) => {
         return res.redirect('/login');
       }
       // User verified, render the OTP page
-      res.render('./forgototp/update.ejs', { email });
+      res.render('./forgototp/update.ejs', { email});
     } catch (err) {
       console.error(err);
       res.status(500).send('Internal Server Error');
@@ -99,27 +100,28 @@ module.exports.changepass=async(req, res) => {
 
 
 module.exports.update=async (req, res) => {
-    try {
-        const { email, password } = req.body;
+  try {
+      const { email, password} = req.body;
 
-        // Find user by email
-        const user = await User.findOne({ email });
+      // Find user by email
+      const user = await User.findOne({ email });
 
-        if (!user) {
-            req.flash('error', 'No user found with that email.');
-            return res.redirect('/login/forgotpass'); // Redirect to forgot password page or wherever you want
-        }
+      if (!user) {
+          req.flash('error', 'No user found with that email.');
+          return res.redirect('/login/forgotpass'); // Redirect to forgot password page or wherever you want
+      }
 
-        // Set new password using setPassword method provided by passport-local-mongoose
-        await user.setPassword(password);
+      // Set new password using setPassword method provided by passport-local-mongoose
+      
+      await user.setPassword(password);
 
-        // Save the updated user
-        await user.save();
+      // Save the updated user
+      await user.save();
 
-        req.flash('success', 'Password updated successfully.');
-        res.redirect('/login'); // Redirect to login page
-    } catch (error) {
-        req.flash('error', error.message);
-        res.redirect('/forgot-password'); // Redirect to forgot password page or handle error appropriately
-    }
-}
+      req.flash('success', 'Password updated successfully.');
+      res.redirect('/login'); // Redirect to login page
+  } catch (error) {
+      req.flash('error', error.message);
+      res.redirect('/forgot-password'); // Redirect to forgot password page or handle error appropriately
+  }
+};

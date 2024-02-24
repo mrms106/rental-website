@@ -27,8 +27,8 @@ const listingSchema = new Schema({
   },
   catagory:String,
   email:String,
-  
-  
+  wishlist:[String]
+ 
   
   
 });

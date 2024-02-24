@@ -40,6 +40,7 @@ router.get("/farm",catagorycontroller.farm);
 router.get("/mountain",catagorycontroller.mountain);
 router.get("/pool",catagorycontroller.pool);
 router.get("/rooms",catagorycontroller.rooms);
+router.get("/wishlist",isLoggedIn,catagorycontroller.wishlist);
 
 //new route
 router.get("/new",isLoggedIn, (listingController.rendernewform));
@@ -66,6 +67,22 @@ router.delete("/:id",isLoggedIn,isOwner,wrapAsync(listingController.destroyListi
 router.get("/:id/booking",isLoggedIn,wrapAsync(bookingcontroller.booking));
 router.post("/:id",isLoggedIn,wrapAsync(bookingcontroller.renderbookform));
 router.get("/:id/booking/success",isLoggedIn,wrapAsync(bookingcontroller.booksuccess))
+
+
+
+// POST route to handle adding items to wishlist
+
+
+
+
+
+
+
+router.post("/:id/add", listingController.addwishlist);
+router.post("/:id/remove", listingController.removewishlist);
+
+
+
 
 
 

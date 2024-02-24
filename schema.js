@@ -9,7 +9,9 @@ module.exports.listingSchema=joi.object({
         price:joi.number().required().min(0),
         image:joi.object().allow("",null),
         catagory:joi.string().allow("",null),
-        email:joi.string().required(),
+        email:joi.string().allow("",null),
+        wishlist: joi.array().items(joi.string()) // Define wishlist as an array of strings
+    
 
     }).required()
 });
