@@ -1,16 +1,26 @@
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/listing"><i class="fa-regular fa-compass"></i></a>
+      <a class="navbar-brand" href="/listing"><i class="fa-regular fa-compass"></i>   </a>
+      <!-- serch for mobile screen  -->
+      <div class="navbar-nav ms-auto mobile">
+        <form class="d-flex" action="/listing/search" method="GET" role="search">
+            <input class="form-control me-2 search1-input" type="search" name="query" placeholder="search">
+            <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+    
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
          
-          <a class="nav-link" href="/listing">Explore</a>
-          
+          <a class="nav-link" href="/listing">Explore</a>&nbsp;
+          <%if(currUser){%>
+          <a class="nav-link" href="/listing"><b> <i class="fa-solid fa-user" style="color: #fe434d;"></i> &nbsp;&nbsp; <%= currUser.username%></b></a>
+          <%}%>
         </div>
-        <div class="navbar-nav ms-auto">
+        <div class="navbar-nav ms-auto laptop">
           <form class="d-flex" action="/listing/search" method="GET" role="search">
               <input class="form-control me-2 search-input" type="search" name="query" placeholder="search destination">
               <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
@@ -18,19 +28,36 @@
       </div>
       
         <div class="navbar-nav ms-auto">
-          <a class="nav-link list-home" href="/listing/new">List  your home</a>
+          
+          <a class="nav-link list-home laptop" href="/listing/new">List  your home</a>
    
-          <a class="nav-link list-home" href="/listing/wishlist">my wishlist</a>
+          <a class="nav-link list-home laptop" href="/listing/wishlist">my wishlist</a>
 
           
           <% if(!currUser){  %>
-            <a class="nav-link link-border "  href="/sign"><b>Sign-Up</b></a>
-          <a class="nav-link link-border" href="/login"><b>Log-in</b></a>
+            <a class="nav-link link-border laptop "  href="/sign"><b>Sign-Up</b></a>
+          <a class="nav-link link-border laptop" href="/login"><b>Log-in</b></a>
           <% } %>
 
           <% if(currUser){  %>
-            <a class="nav-link link-border" href="/logout"><b>Log-Out</b></a>
+            <a class="nav-link link-border laptop" href="/logout"><b>Log-Out</b></a>
           <% } %>
+
+          <!-- for mobile view -->
+          <div class="mobiledisplay">
+            <a class="nav-link list-home" href="/listing/new">List  your home</a>
+     
+            <a class="nav-link list-home" href="/listing/wishlist">my wishlist</a>
+  
+            
+            <% if(!currUser){  %>
+              <a class="nav-link link-border "  href="/sign"><b>Sign-Up</b></a>
+            <a class="nav-link link-border" href="/login"><b>Log-in</b></a>
+            <% } %>
+  
+            <% if(currUser){  %>
+              <a class="nav-link link-border" href="/logout"><b>Log-Out</b></a>
+            <% } %></div>
 
           <style>
             
@@ -45,19 +72,48 @@
               background-color: #fe434d;
               color: white !important;
             }
+            .mobiledisplay{
+                display:none;
+              
+                
+              }
+            .mobile{
+              display: none;
+            }
             @media(max-width:500px){
               .link-border{
                 width: 100px;
                 margin-top: 1rem;
                 display: inline;
+                text-align: center;
                 
               }
               .list-home{
                 width: 150px;
                 margin-top: 1rem;
-               
+                text-align: center;
+              
 
               }
+              .mobiledisplay{
+                display:flex;
+                flex-wrap: wrap;
+                
+              }
+              .laptop{
+                display: none;
+              }
+              .mobile{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 40px;
+
+              }
+              .search1-input{
+                width: 130px;
+              }
+              
 
             }
             .list-home{
