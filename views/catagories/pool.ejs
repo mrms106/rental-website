@@ -2,13 +2,14 @@
 <%=layout ("./layouts/boilerplate.ejs")%>
 
    <style>
-   #filters{
+    @media(min-width:500px){
+    #filters{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    
-    
+    align-items: center;  
    }
+  }
+
 
    .filter{
     text-align: center;
@@ -45,18 +46,48 @@
     margin-left: 5rem;
     display: flex;
     align-items: center;
+   } 
+  
+
+   @media(max-width:500px){
+    .tax-toggle{
+      display: none;
+    }
+    /* for swapping */
+    #filters {
+    display: flex;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+    max-width: 100%; /* Ensure the container takes up the available width */
+}
+
+.filter {
+    flex-shrink: 0; /* Prevent filters from shrinking */
+    padding: 0 10px; /* Adjust spacing */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.filter a {
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Ensure the link takes up only the necessary space */
+}
+
+.filter > div {
+    display: inline-block; /* Ensure icon and text are inline */
+}
    }
    </style>
    
     <div id="filters">
-     <div class="filter" >
-        <div><a href="/listing"><i class="fa-solid fa-house"></i></div>
+      <a href="/listing">
+     <div class="filter " >
+        <div><i class="fa-solid fa-house"></i></div>
         <p>All</p></a>
        </div>
        <a href="/listing/city">
-       <div class="filter">
+       <div class="filter ">
         <div><i class="fa-solid fa-mountain-city"></i></div>
-        <p>Iconic Cities</p></a>
+        <p>Cities</p></a>
        </div>
        <a href="/listing/mountain">
        <div class="filter">
@@ -64,42 +95,43 @@
         <p>Mountains</p></a>
        </div>
        <a href="/listing/rooms">
-       <div class="filter">
+       <div class="filter c">
         <div><i class="fa-solid fa-bed"></i></div>
         <p>Rooms</p></a>
        </div>
        <a href="/listing/castele">
-       <div class="filter">
+       <div class="filter c">
         <div><i class="fa-brands fa-fort-awesome"></i></div>
         <p>Castels</p></a>
        </div>
+       
        <a href="/listing/pool">
-       <div class="filter">
+       <div class="filter c">
         <div><i class="fa-solid fa-person-swimming"></i></div>
         <p>Amazing Pools</p></a>
        </div>
        <a href="/listing/camping">
-       <div class="filter">
+       <div class="filter ">
         <div><i class="fa-solid fa-campground"></i></div>
         <p>Camping</p></a>
        </div>
        <a href="/listing/farm">
-       <div class="filter">
+       <div class="filter c">
         <div><i class="fa-solid fa-tractor"></i></div>
         <p>Farms</p></a>
        </div>
        <a href="/listing/arctic">
-       <div class="filter">
+       <div class="filter c">
         <div><i class="fa-regular fa-snowflake"></i></div>
         <p>Arctic</p></a>
        </div>
        <a href="/listing/domes">
-       <div class="filter">
+       <div class="filter c">
         <div><i class="fa-solid fa-igloo"></i></div>
         <p>Domes</p></a>
        </div>
        <a href="/listing/boat">
-       <div class="filter">
+       <div class="filter ">
         <div><i class="fa-solid fa-ship"></i></div>
         <p>Boats</p></a>
        </div>

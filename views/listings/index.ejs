@@ -2,13 +2,14 @@
 <%=layout ("./layouts/boilerplate.ejs")%>
 
    <style>
-   #filters{
+    @media(min-width:500px){
+    #filters{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    
-    
+    align-items: center;  
    }
+  }
+
 
    .filter{
     text-align: center;
@@ -45,21 +46,42 @@
     margin-left: 5rem;
     display: flex;
     align-items: center;
-   }
+   } 
+  
+
    @media(max-width:500px){
     .tax-toggle{
       display: none;
     }
-    .c{
-      display: none;
-    }
-    
+    /* for swapping */
+    #filters {
+    display: flex;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+    max-width: 100%; /* Ensure the container takes up the available width */
+}
+
+.filter {
+    flex-shrink: 0; /* Prevent filters from shrinking */
+    padding: 0 10px; /* Adjust spacing */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.filter a {
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Ensure the link takes up only the necessary space */
+}
+
+.filter > div {
+    display: inline-block; /* Ensure icon and text are inline */
+}
    }
    </style>
    
     <div id="filters">
+      <a href="/listing">
      <div class="filter " >
-        <div><a href="/listing"><i class="fa-solid fa-house"></i></div>
+        <div><i class="fa-solid fa-house"></i></div>
         <p>All</p></a>
        </div>
        <a href="/listing/city">
