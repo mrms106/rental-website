@@ -14,6 +14,8 @@ const upload = multer({ storage })
 const listingController=require("../controllers/listing.js");
 const catagorycontroller=require("../controllers/catagory.js");
 const bookingcontroller=require("../controllers/booking.js");
+const footercontroller=require("../controllers/footerfile.js");
+
 
 const { assert } = require("joi");
 
@@ -28,7 +30,10 @@ router.get("/", wrapAsync(listingController.index));
 // GET route to handle search submission
 router.get('/search', (listingController.searchquary));
 
-
+//footer route
+router.get("/privacy&terms", footercontroller.privacy)
+router.get("/contactus", footercontroller.contactus)
+router.post("/contactus",footercontroller.contactuspost)
 //catagories routes
 router.get("/arctic",catagorycontroller.arctic);
 router.get("/boat",catagorycontroller.boat);
@@ -71,13 +76,6 @@ router.get("/:id/booking/success",isLoggedIn,wrapAsync(bookingcontroller.booksuc
 
 
 // POST route to handle adding items to wishlist
-
-
-
-
-
-
-
 router.post("/:id/add", listingController.addwishlist);
 router.post("/:id/remove", listingController.removewishlist);
 

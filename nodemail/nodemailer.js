@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
   // Send OTP via Email
   function sendOTP(email, otp) {
     const mailOptions = {
-      from: 'mhs93679@gmail.com',
+      from: 'mr.ms93679@gmail.com',
       to: email,
       subject: 'OTP for Email Verification from Wanderlust',
       text: `Your OTP for email verification is: ${otp}`
