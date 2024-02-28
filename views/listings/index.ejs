@@ -13,8 +13,8 @@
 
    .filter{
     text-align: center;
-    margin-right: 2rem;
-    margin-top: 2rem;
+    /* margin-right: 1rem; */
+    margin-top: 1rem;
     opacity: 0.7;
     text-decoration: none !important;
    }
@@ -79,62 +79,71 @@
    </style>
    
     <div id="filters">
-      <a href="/listing">
-     <div class="filter " >
-        <div><i class="fa-solid fa-house"></i></div>
-        <p>All</p></a>
-       </div>
-       <a href="/listing/city">
+       <a href="/listing">
        <div class="filter ">
-        <div><i class="fa-solid fa-mountain-city"></i></div>
-        <p>Cities</p></a>
+         <button class="btn" type="submit"><i class="fa-solid fa-house"></i><br>All</button>
+        </a>
        </div>
-       <a href="/listing/mountain">
-       <div class="filter">
-        <div><i class="fa-solid fa-mountain"></i></div>
-        <p>Mountains</p></a>
-       </div>
-       <a href="/listing/rooms">
-       <div class="filter c">
-        <div><i class="fa-solid fa-bed"></i></div>
-        <p>Rooms</p></a>
-       </div>
-       <a href="/listing/castele">
-       <div class="filter c">
-        <div><i class="fa-brands fa-fort-awesome"></i></div>
-        <p>Castels</p></a>
-       </div>
-       
-       <a href="/listing/pool">
-       <div class="filter c">
-        <div><i class="fa-solid fa-person-swimming"></i></div>
-        <p>Amazing Pools</p></a>
-       </div>
-       <a href="/listing/camping">
-       <div class="filter ">
-        <div><i class="fa-solid fa-campground"></i></div>
-        <p>Camping</p></a>
-       </div>
-       <a href="/listing/farm">
-       <div class="filter c">
-        <div><i class="fa-solid fa-tractor"></i></div>
-        <p>Farms</p></a>
-       </div>
-       <a href="/listing/arctic">
-       <div class="filter c">
-        <div><i class="fa-regular fa-snowflake"></i></div>
-        <p>Arctic</p></a>
-       </div>
-       <a href="/listing/domes">
-       <div class="filter c">
-        <div><i class="fa-solid fa-igloo"></i></div>
-        <p>Domes</p></a>
-       </div>
-       <a href="/listing/boat">
-       <div class="filter ">
-        <div><i class="fa-solid fa-ship"></i></div>
-        <p>Boats</p></a>
-       </div>
+        <div class="filter ">
+         <form class="d-flex" action="/listing/catagory" method="GET" role="search">
+          <input class="form-control me-2 search1-input" type="hidden" name="query" value="City">
+          <button class="btn" type="submit"><i class="fa-solid fa-mountain-city"></i><br>city</button>
+         </form>
+        </div>
+        <div class="filter ">
+          <form class="d-flex" action="/listing/catagory" method="GET" role="search">
+           <input class="form-control me-2 search1-input" type="hidden" name="query" value="mountain">
+           <button class="btn" type="submit"><i class="fa-solid fa-mountain"></i><br>Mountains</button>
+          </form>
+         </div>
+         <div class="filter ">
+          <form class="d-flex" action="/listing/catagory" method="GET" role="search">
+           <input class="form-control me-2 search1-input" type="hidden" name="query" value="rooms">
+           <button class="btn" type="submit"><i class="fa-solid fa-bed"></i><br>Rooms</button>
+          </form>
+         </div>
+         <div class="filter ">
+          <form class="d-flex" action="/listing/catagory" method="GET" role="search">
+           <input class="form-control me-2 search1-input" type="hidden" name="query" value="castele">
+           <button class="btn" type="submit"><i class="fa-brands fa-fort-awesome"></i><br>Castels</button>
+          </form>
+         </div>
+         <div class="filter ">
+          <form class="d-flex" action="/listing/catagory" method="GET" role="search">
+           <input class="form-control me-2 search1-input" type="hidden" name="query" value="pools">
+           <button class="btn" type="submit"><i class="fa-solid fa-person-swimming"></i><br>Amazing Pools</button>
+          </form>
+          </div>
+          <div class="filter ">
+            <form class="d-flex" action="/listing/catagory" method="GET" role="search">
+             <input class="form-control me-2 search1-input" type="hidden" name="query" value="camping">
+             <button class="btn" type="submit"><i class="fa-solid fa-campground"></i><br>Camping</button>
+            </form>
+           </div>
+           <div class="filter ">
+            <form class="d-flex" action="/listing/catagory" method="GET" role="search">
+             <input class="form-control me-2 search1-input" type="hidden" name="query" value="farm">
+             <button class="btn" type="submit"><i class="fa-solid fa-tractor"></i><br>Farms</button>
+            </form>
+           </div>
+           <div class="filter ">
+            <form class="d-flex" action="/listing/catagory" method="GET" role="search">
+             <input class="form-control me-2 search1-input" type="hidden" name="query" value="arctic">
+             <button class="btn" type="submit"><i class="fa-regular fa-snowflake"></i><br>Arctic</button>
+            </form>
+           </div>
+           <div class="filter ">
+            <form class="d-flex" action="/listing/catagory" method="GET" role="search">
+             <input class="form-control me-2 search1-input" type="hidden" name="query" value="domes">
+             <button class="btn" type="submit"><i class="fa-solid fa-igloo"></i><br>Domes</button>
+            </form>
+           </div>
+           <div class="filter ">
+            <form class="d-flex" action="/listing/catagory" method="GET" role="search">
+             <input class="form-control me-2 search1-input" type="hidden" name="query" value="boat">
+             <button class="btn" type="submit"><i class="fa-solid fa-ship"></i><br>Boats</button>
+            </form>
+           </div>
        <div class="tax-toggle">
         <div class="form-check-reverse form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">

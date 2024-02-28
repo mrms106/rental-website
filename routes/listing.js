@@ -28,24 +28,16 @@ const { assert } = require("joi");
 router.get("/", wrapAsync(listingController.index));
 
 // GET route to handle search submission
-router.get('/search', (listingController.searchquary));
-
+router.get('/search', (catagorycontroller.searchquary));
+//wishlist
+router.get("/wishlist",isLoggedIn,catagorycontroller.wishlist);
 //footer route
 router.get("/privacy&terms", footercontroller.privacy)
 router.get("/contactus", footercontroller.contactus)
 router.post("/contactus",footercontroller.contactuspost)
+
 //catagories routes
-router.get("/arctic",catagorycontroller.arctic);
-router.get("/boat",catagorycontroller.boat);
-router.get("/camping",catagorycontroller.camping);
-router.get("/castele",catagorycontroller.castele);
-router.get("/city",catagorycontroller.city);
-router.get("/domes",catagorycontroller.domes);
-router.get("/farm",catagorycontroller.farm);
-router.get("/mountain",catagorycontroller.mountain);
-router.get("/pool",catagorycontroller.pool);
-router.get("/rooms",catagorycontroller.rooms);
-router.get("/wishlist",isLoggedIn,catagorycontroller.wishlist);
+router.get("/catagory",catagorycontroller.catagory);
 
 //new route
 router.get("/new",isLoggedIn, (listingController.rendernewform));
