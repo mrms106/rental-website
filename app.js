@@ -34,8 +34,8 @@ const user=require("./routes/user.js");
 
 
 //adding the databas
-const dbUrl="mongodb://127.0.0.1:27017/wanderlust2";
-// const dbUrl=process.env.ATLAS_DB;
+// const dbUrl="mongodb://127.0.0.1:27017/wanderlust2";
+const dbUrl=process.env.ATLAS_DB;
 main()
 .then(()=>{console.log("the database is connected")})
 .catch(err => console.log(err));
