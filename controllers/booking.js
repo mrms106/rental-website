@@ -45,5 +45,6 @@ try {
 } catch (err) {
     req.flash("error", "An error occurred while processing your booking. Please try again later.");
     res.redirect(`/listing/${id}`);
+    console.log(err)
 }
 };
