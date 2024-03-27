@@ -82,7 +82,7 @@
         </label>
             <input name="booking[cheakIn]" 
              type="date" 
-             class="form-control" required>
+             class="form-control" id="checkInDate" required>
 
              
         <div class="invalid-feedback">Please Enter Date</div>
@@ -96,15 +96,21 @@
         </label>
             <input name="booking[cheakOut]" 
              type="date" 
-              class="form-control" required>
+              class="form-control" id="checkOutDate" required>
 
               
         <div class="invalid-feedback">Please Enter Date</div>
 
         </div>
     </div>
-        
-        <div class="mb-3">
+    <div class="mb-3">
+        <label for="totalPriceInput" class="form-label">
+            Total Price With GST:
+        </label>
+        <input id="totalPriceInput" name="totalPrice" class="form-control" readonly>
+    </div>
+     
+        <!-- <div class="mb-3">
 
             <label for="location" 
             class="form-label">
@@ -118,13 +124,45 @@
     </i>
         </div>
              
-        </div>
+        </div> -->
          
          <br><br>
           
          <button class="btn btn-dark mb-3 add-btn">Book Now</button>
          <br><br>
-
-    </form></div>
+         <input type="hidden" name="price" id="basePrice" value="<%=listing.price%>">
+            </form></div>
 </div>
 
+<script>
+    // Get today's date
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById("checkInDate").setAttribute('min', today);
+
+    // Function to set min check-out date based on selected check-in date
+    document.getElementById("checkInDate").addEventListener("change", function() {
+        const checkInDate = this.value;
+        document.getElementById("checkOutDate").setAttribute('min', checkInDate);
+    });
+    // Function to calculate total price
+    function calculateTotalPrice() {
+        const checkInDate = new Date(document.getElementById("checkInDate").value);
+        const checkOutDate = new Date(document.getElementById("checkOutDate").value);
+        const basePrice = parseFloat(document.getElementById("basePrice").value);
+        
+        // Calculate the difference in days
+        const timeDiff = Math.abs(checkOutDate.getTime() - checkInDate.getTime());
+        const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        
+        // Calculate total price
+        const totalPrice = basePrice * nights+((basePrice * nights)*0.18);
+        
+        
+        // Update the hidden input field with total price
+        document.getElementById("totalPriceInput").value = totalPrice + " ₹";
+    }
+
+    // Add event listeners to check-in and check-out date inputs
+    document.getElementById("checkInDate").addEventListener("change", calculateTotalPrice);
+    document.getElementById("checkOutDate").addEventListener("change", calculateTotalPrice);
+</script>

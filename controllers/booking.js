@@ -1,19 +1,11 @@
 const Booking=require("../models/booking");
 const Listing=require("../models/listing");
 const nodemailer = require("nodemailer");
-
-// Nodemailer configuration
-const transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'mr.ms93679@gmail.com', // Enter your email address
-        pass: 'vsqf cwao xvis yscg' // Enter your email password (or use app password)
-    }
-});
+const {bookingmail,bookingmailuser}=require("../nodemail/bookingmail");
 
 
 
-//booking routes
+
 module.exports.booking=async(req,res)=>{
     let{id}=req.params;
     const listing=await Listing.findById(id);
@@ -23,23 +15,17 @@ module.exports.booking=async(req,res)=>{
 
 module.exports.renderbookform=async(req,res)=>{
 const newBooking = new Booking(req.body.booking);
+const currUser=req.user.email;
 let { id } = req.params;
 try {
-    // Get the details of the listing associated with the booking
+   
     const listing = await Listing.findById(id);
-    // Get the email of the hotel owner
+   
     const ownerEmail = listing.email; 
-    // Send email to the hotel owner
-    const mailOptions = {
-        from: 'mr.ms93679@gmail.com', // Sender's email address
-        to: ownerEmail, // Receiver's email address (hotel owner)
-        subject: 'New Booking Notification From Wanderlust',
-        text: `A new booking has been made for your listing. following is the details of customer:${newBooking}`,
-    };
-    await transporter.sendMail(mailOptions); 
-    // Save the new booking
+    bookingmail(ownerEmail,newBooking);
+    bookingmailuser(currUser,newBooking,ownerEmail);
     await newBooking.save();
-    // Redirect with success message
+   
     req.flash("success", "Booked successfully! You will receive a message from the owner shortly. Make 50% payment to confirm booking. Thank you!");
     res.redirect(`/listing/${id}`);
 } catch (err) {

@@ -7,8 +7,8 @@ const randomstring = require('randomstring');
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'mr.ms93679@gmail.com', // Enter your email address
-      pass: 'vsqf cwao xvis yscg' // Enter your email password (or use app password)
+      user: process.env.mail, 
+      pass: process.env.pass 
     }
   });
   
@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
   // Send OTP via Email
   function sendOTP(email, otp) {
     const mailOptions = {
-      from: 'mr.ms93679@gmail.com',
+      from: process.env.mail,
       to: email,
       subject: 'OTP for Email Verification from Wanderlust',
       text: `Your OTP for email verification is: ${otp}`
@@ -38,11 +38,12 @@ const transporter = nodemailer.createTransport({
     });
   }
 
-module.exports=transporter
+
 
   module.exports = {
     generateOTP: generateOTP,
     sendOTP: sendOTP,
+    transporter
     
     // Userotp: Userotp
 };
