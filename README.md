@@ -48,6 +48,3 @@ Explore the live project here: **[Vacation Rental Platform](https://vacation-ren
 Enjoy exploring unique stays and hosting your own property on our vacation rental platform!
 
 
----
-
-Enjoy exploring unique stays and hosting your own property on our vacation rental platform!
