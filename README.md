@@ -18,7 +18,7 @@ A modern web application to browse, book, and list vacation rentals. Designed wi
 
 ## Visit Link
 
-Explore the live project here: **[Vacation Rental Platform](https://your-live-site-url.com)**
+Explore the live project here: **[Vacation Rental Platform](https://vacation-rental-website.onrender.com/listing)**
 
 ---
 
